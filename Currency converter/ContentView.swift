@@ -9,47 +9,73 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @State private var viewModel = ConverterViewModel()
+    @State private var inputValue: String = ""
+    
+    // TODO: add storage for screen state
+    // TODO: refactor views for separate parts
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        VStack(alignment: .center, spacing: 10) {
+            Text("Currency converter")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            HStack(alignment: .center, spacing: 60) {
+                VStack {
+                    Text("Convert from")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    Picker("First Currency", selection: $viewModel.firstCurrency) {
+                        ForEach(Currency.allCases) { currency in
+                            Text(currency.rawValue.capitalized)
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                VStack {
+                    Text("Convert to")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    Picker("Second Currency", selection: $viewModel.secondCurrency) {
+                        ForEach(Currency.allCases) { currency in
+                            Text(currency.rawValue.capitalized)
+                        }
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
+            .padding()
+            
+            
+            HStack {
+                TextField(text: $viewModel.inputAmount, prompt: Text("Enter currency amount")) {
+                    
+                }
+                .font(.title2)
+                .fontWeight(.semibold)
+                .textFieldStyle(.roundedBorder)
+                .keyboardType(.decimalPad)
+                Button("Done") {
+                    print()
+                }
+                .buttonStyle(.borderedProminent)
+            }
+            .padding(.horizontal, 20)
+            
+            Text("Result")
+                .font(.title)
+                .fontWeight(.semibold)
+            Text("\(viewModel.convertedAmount ?? 0)")
+                .font(.title)
+                .fontWeight(.semibold)
+            Text("No internet. Result based on data from \(viewModel.date)")
+                .foregroundStyle(.red)
+                .font(.title)
+                .fontWeight(.semibold)
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+        .onAppear {
+            Task {
+                await viewModel.getCurrencyRates()
             }
         }
     }

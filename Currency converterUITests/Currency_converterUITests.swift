@@ -8,6 +8,8 @@
 import XCTest
 
 final class Currency_converterUITests: XCTestCase {
+    // TODO: one test to UI
+    
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

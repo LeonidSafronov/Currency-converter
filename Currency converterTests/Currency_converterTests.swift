@@ -9,6 +9,7 @@ import XCTest
 @testable import Currency_converter
 
 final class Currency_converterTests: XCTestCase {
+    // TODO: one test to ViewModel
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

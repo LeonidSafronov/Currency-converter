@@ -18,6 +18,7 @@ struct AmountResponse: Decodable {
     let result: Double
 }
 
+// TODO: clear
 //{
 //    "success": true,
 //    "query": {

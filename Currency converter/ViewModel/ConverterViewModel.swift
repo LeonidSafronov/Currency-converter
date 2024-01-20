@@ -32,9 +32,9 @@ import SwiftUI
         }
     }
     
-    func getConvertedAmount() async {
+    func getConvertedAmount(from firstCurrency: Currency, to secondCurrency: Currency, amount: Double) async {
         do {
-            try await convertedAmount = networkManager.getCurrencyConvertation(from: firstCurrency, to: secondCurrency, amount: Double(inputAmount) ?? 0)
+            try await convertedAmount = networkManager.getCurrencyConvertation(from: firstCurrency, to: secondCurrency, amount: amount)
         } catch {
             // TODO: handle error
         }

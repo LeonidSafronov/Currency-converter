@@ -13,13 +13,8 @@ final class NetworkManager {
     // TODO: save token to file
     private static let baseURL = "http://api.exchangeratesapi.io/v1/"
     private static let token = "c81ee97fae4797403c3aa645112942c6"
-    
-//    data from model given from user in UI and for saving history by default
-    var from = "USD"
-    var to = "EUR"
-    var amount = 0
-    var base = "RUB" // use all currencies for base one by one
-    var symbols = "USD,CAD,EUR" // use all currencies by default
+
+    // TODO: clear
 //http://api.exchangeratesapi.io/v1/latest?access_key=c81ee97fae4797403c3aa645112942c6&symbols=USD,CAD,EUR&format=1
     // as to be
     //http://api.exchangeratesapi.io/v1/convert?access_key=c81ee97fae4797403c3aa645112942c6&from=EUR&to=JPY&amount=25
@@ -58,22 +53,32 @@ final class NetworkManager {
     }
     
     func getCurrencyRates() async throws -> [Currency : Double] {
-        let currencyRateURL = NetworkManager.baseURL + "latest?access_key=" + NetworkManager.token + "&base=\(base)" + "&symbols=\(symbols)" + "&format=1"
-        guard let url = URL(string: currencyRateURL) else {
-            throw ConverterError.invalidURL
+        let currencies = Currency.allCases.filter { $0 != .empty }
+        var result: [Currency : Double] = [:]
+        for currency in currencies {
+            let base = currency
+            let symbols = currencies.filter { $0 != currency }.map { $0.rawValue }.joined(separator: ",")
+            let currencyRateURL = NetworkManager.baseURL + "latest?access_key=" + NetworkManager.token + "&base=\(base)" + "&symbols=\(symbols)" + "&format=1"
+            guard let url = URL(string: currencyRateURL) else {
+                throw ConverterError.invalidURL
+            }
+            
+            let (data, response) = try await URLSession.shared.data(from: url )
+            
+            if let response = response as? HTTPURLResponse, response.statusCode != 200 {
+                throw ConverterError.invalidResponse
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                try result.merge(decoder.decode(RatesResponse.self, from: data).rates) { current, _ in
+                    current
+                }
+            } catch {
+                throw ConverterError.invalidData
+            }
         }
         
-        let (data, response) = try await URLSession.shared.data(from: url )
-        
-        if let response = response as? HTTPURLResponse, response.statusCode != 200 {
-            throw ConverterError.invalidResponse
-        }
-        
-        do {
-            let decoder = JSONDecoder()
-            return try decoder.decode(RatesResponse.self, from: data).rates
-        } catch {
-            throw ConverterError.invalidData
-        }
+        return result
     }
 }

@@ -29,6 +29,8 @@
 		B38906612B5C4BA8000D5576 /* ConvertedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38906602B5C4BA8000D5576 /* ConvertedView.swift */; };
 		B38906632B5C4BD0000D5576 /* PickerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38906622B5C4BD0000D5576 /* PickerSectionView.swift */; };
 		B3D3D9CA2B5C4FF200C66C95 /* CurrencyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B388C34C2B5A8D1A00355614 /* CurrencyStorage.swift */; };
+		B3D3D9CC2B5D569700C66C95 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3D9CB2B5D569700C66C95 /* Alert.swift */; };
+		B3D3D9CE2B5D576000C66C95 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3D9CD2B5D576000C66C95 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		B389065E2B5C4011000D5576 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		B38906602B5C4BA8000D5576 /* ConvertedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedView.swift; sourceTree = "<group>"; };
 		B38906622B5C4BD0000D5576 /* PickerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSectionView.swift; sourceTree = "<group>"; };
+		B3D3D9CB2B5D569700C66C95 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		B3D3D9CD2B5D576000C66C95 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,7 @@
 				B388C34A2B5A8D1A00355614 /* ContentView.swift */,
 				B38906622B5C4BD0000D5576 /* PickerSectionView.swift */,
 				B38906602B5C4BA8000D5576 /* ConvertedView.swift */,
+				B3D3D9CD2B5D576000C66C95 /* LoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 			children = (
 				B388C3782B5A956300355614 /* NetworkManager.swift */,
 				B388C34C2B5A8D1A00355614 /* CurrencyStorage.swift */,
+				B3D3D9CB2B5D569700C66C95 /* Alert.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -328,10 +334,12 @@
 				B388C34B2B5A8D1A00355614 /* ContentView.swift in Sources */,
 				B388C34D2B5A8D1A00355614 /* CurrencyStorage.swift in Sources */,
 				B388C3792B5A956300355614 /* NetworkManager.swift in Sources */,
+				B3D3D9CC2B5D569700C66C95 /* Alert.swift in Sources */,
 				B38906612B5C4BA8000D5576 /* ConvertedView.swift in Sources */,
 				B388C3492B5A8D1A00355614 /* Currency_converterApp.swift in Sources */,
 				B388C37C2B5A95BF00355614 /* CurrencyRate.swift in Sources */,
 				B389065F2B5C4011000D5576 /* Task.swift in Sources */,
+				B3D3D9CE2B5D576000C66C95 /* LoadingView.swift in Sources */,
 				B388C3752B5A909400355614 /* ConverterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

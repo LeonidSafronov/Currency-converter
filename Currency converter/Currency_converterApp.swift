@@ -27,6 +27,5 @@ struct Currency_converterApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(sharedModelContainer)
     }
 }

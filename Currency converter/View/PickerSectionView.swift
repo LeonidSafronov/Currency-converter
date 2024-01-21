@@ -9,7 +9,9 @@ import SwiftUI
 
 struct PickerSectionView: View {
     @Binding var firstCurrency: Currency
+    @Binding var firstPickerCurrencies: [Currency]
     @Binding var secondCurrency: Currency
+    @Binding var secondPickerCurrencies: [Currency]
     
     var body: some View {
         HStack(alignment: .center, spacing: 60) {
@@ -18,7 +20,7 @@ struct PickerSectionView: View {
                     .font(.title2)
                     .fontWeight(.semibold)
                 Picker("First Currency", selection: $firstCurrency) {
-                    ForEach(Currency.allCases) { currency in
+                    ForEach(firstPickerCurrencies) { currency in
                         Text(currency.rawValue.capitalized)
                     }
                 }
@@ -28,7 +30,7 @@ struct PickerSectionView: View {
                     .font(.title2)
                     .fontWeight(.semibold)
                 Picker("Second Currency", selection: $secondCurrency) {
-                    ForEach(Currency.allCases) { currency in
+                    ForEach(secondPickerCurrencies) { currency in
                         Text(currency.rawValue.capitalized)
                     }
                 }

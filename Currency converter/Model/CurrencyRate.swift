@@ -7,16 +7,7 @@
 
 import Foundation
 
-struct CurrencyRate: Decodable {
-    let first: Currency
-    let second: [Currency]
-    let value: [Double]
-}
-
-// TODO: clear
-//let currencies: [String] = ["rubles (RUB)", "US dollars (USD)", "euro (EUR)", "British pound (GBP)", "Swiss franc (CHF)", "Chinese yuan (CNY)"]
-
-enum Currency: String, CaseIterable, Identifiable, Codable, Hashable {
+enum Currency: String, CaseIterable, Identifiable, Codable, Hashable, Equatable {
     case RUB, USD, EUR, GBP, CHF, CNY, empty
     var id: Self { self }
 }

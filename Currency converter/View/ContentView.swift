@@ -9,56 +9,66 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @State private var viewModel = ConverterViewModel()
+    @State private var viewModel = ConverterViewModel(
+        dataSource: CurrencyStorageDataSource.shared,
+        networkManager: ConverterServiceImp(client: HTTPClientImp.converterServiceClient)
+    )
 
     var body: some View {
-        ZStack {
-            VStack(alignment: .center, spacing: 10) {
-                Text("Currency converter")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                PickerSectionView(firstCurrency: $viewModel.firstCurrency,
-                                  firstPickerCurrencies: $viewModel.currenciesForFirstPicker,
-                                  secondCurrency: $viewModel.secondCurrency,
-                                  secondPickerCurrencies: $viewModel.currenciesForSecondPicker)
-                .onChange(of: viewModel.firstCurrency) {
-                    viewModel.saveFirstCurrency()
-                }
-                // TODO: don't apply change because of rewriting storage
-                .onChange(of: viewModel.firstCurrency) {
-                    viewModel.saveSecondCurrency()
-                }
-                HStack {
-                    TextField(text: $viewModel.inputAmount, prompt: Text("Enter currency amount")) {
-                        // TODO: clear on change of currencies or amount
+        VStack(alignment: .center, spacing: 10) {
+            Text("Currency converter")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            PickerSectionView(
+                firstCurrency: .init(
+                    get: { viewModel.firstCurrency },
+                    set: { newValue in
+                        viewModel.set(firstCurrency: newValue)
                     }
+                ),
+                secondCurrency: .init(
+                    get: { viewModel.secondCurrency },
+                    set: { newValue in
+                        viewModel.set(secondCurrency: newValue)
+                    }
+                ),
+                firstPickerCurrencies: viewModel.currenciesForFirstPicker,
+                secondPickerCurrencies: viewModel.currenciesForSecondPicker
+            )
+            
+            HStack {
+                TextField("Amount",text: $viewModel.inputAmount, prompt: Text("Enter currency amount"))
                     .font(.title2)
                     .fontWeight(.semibold)
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.decimalPad)
-                    Button("Done") {
-                        // TODO: add flag for first use only
-                        viewModel.appendItem()
-                        Task {
-                            await viewModel.getConvertedAmount(from: viewModel.firstCurrency, to: viewModel.secondCurrency, amount: Double(viewModel.inputAmount) ?? 0)
-                        }
+                
+                Button("Done") {
+                    // TODO: add flag for first use only
+                    viewModel.appendItem()
+                    Task {
+                        await viewModel.getConvertedAmount(from: viewModel.firstCurrency, to: viewModel.secondCurrency, amount: Double(viewModel.inputAmount) ?? 0)
                     }
-                    .buttonStyle(.borderedProminent)
                 }
-                .padding(.horizontal, 20)
-                
-                ConvertedView(convertedAmount: $viewModel.convertedAmount)
-                
+                .buttonStyle(.borderedProminent)
+            }
+            .padding(.horizontal, 20)
+            
+            ConvertedView(convertedAmount: $viewModel.convertedAmount)
+            
+            if viewModel.isErrorReceived {
                 Text("No internet. Result based on data from \(viewModel.date)")
                     .foregroundStyle(.red)
                     .font(.title)
                     .fontWeight(.semibold)
             }
-            .onAppear {
-                Task {
-                    await viewModel.getCurrencyRates()
-                }
-            }
+        }
+        .task {
+            viewModel.prepare()
+            await viewModel.getCurrencyRates()
+        }
+        .overlay {
             if viewModel.isLoading {
                 LoadingView()
             }
@@ -71,5 +81,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: CurrencyStorage.self, inMemory: true)
+        .modelContainer(for: CurrencyStorageModel.self, inMemory: true)
 }

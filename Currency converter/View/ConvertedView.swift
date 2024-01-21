@@ -15,6 +15,7 @@ struct ConvertedView: View {
             Text("Result")
                 .font(.title)
                 .fontWeight(.semibold)
+            
             Text("\(convertedAmount ?? 0)")
                 .font(.title)
                 .fontWeight(.semibold)

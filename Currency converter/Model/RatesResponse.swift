@@ -11,14 +11,14 @@ struct RatesResponse: Decodable {
     let timeStamp: Int
     let date: Date
     let base: Currency
-    let rates: [Currency : Double] // can it be serialized in this way?
+    let rates: [Currency : Double]
 }
 
 struct AmountResponse: Decodable {
     let result: Double
 }
 
-// TODO: clear
+// MARK: - Mocks for testing
 //{
 //    "success": true,
 //    "query": {

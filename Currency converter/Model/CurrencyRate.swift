@@ -11,3 +11,7 @@ enum Currency: String, CaseIterable, Identifiable, Codable, Hashable, Equatable 
     case RUB, USD, EUR, GBP, CHF, CNY, empty
     var id: Self { self }
 }
+
+extension Currency {
+    static let active: [Currency] = [.RUB, .USD, .EUR, .GBP, .CHF, .CNY]
+}

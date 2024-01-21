@@ -14,7 +14,7 @@ struct AlertItem: Identifiable {
     let dismissButton: Alert.Button
 }
 
-struct AlertContext {
+extension AlertItem {
     
     //MARK: - Network Alerts
     
@@ -42,6 +42,20 @@ struct AlertContext {
     static let smthGoesWrong = AlertItem(
         title: Text("Server Error"),
         message: Text("Something goes wrong."),
+        dismissButton: .default(Text("OK"))
+    )
+    
+    //MARK: - DataSource Alerts
+    
+    static let invalidDataSaving = AlertItem(
+        title: Text("DataSource Error"),
+        message: Text("Unable to save data."),
+        dismissButton: .default(Text("OK"))
+    )
+    
+    static let invalidDataLoading = AlertItem(
+        title: Text("DataSource Error"),
+        message: Text("Unable to load data."),
         dismissButton: .default(Text("OK"))
     )
 }

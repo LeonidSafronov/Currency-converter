@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PickerSectionView: View {
     @Binding var firstCurrency: Currency
-    @Binding var firstPickerCurrencies: [Currency]
     @Binding var secondCurrency: Currency
-    @Binding var secondPickerCurrencies: [Currency]
+    let firstPickerCurrencies: [Currency]
+    let secondPickerCurrencies: [Currency]
     
     var body: some View {
         HStack(alignment: .center, spacing: 60) {
@@ -19,16 +19,19 @@ struct PickerSectionView: View {
                 Text("Convert from")
                     .font(.title2)
                     .fontWeight(.semibold)
+                
                 Picker("First Currency", selection: $firstCurrency) {
                     ForEach(firstPickerCurrencies) { currency in
                         Text(currency.rawValue.capitalized)
                     }
                 }
             }
+            
             VStack {
                 Text("Convert to")
                     .font(.title2)
                     .fontWeight(.semibold)
+                
                 Picker("Second Currency", selection: $secondCurrency) {
                     ForEach(secondPickerCurrencies) { currency in
                         Text(currency.rawValue.capitalized)

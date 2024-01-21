@@ -14,6 +14,7 @@ struct RatesQuery: Encodable {
 }
 
 struct AmountQuery: Encodable {
+    let accessKey: String
     let from: String
     let to: String
     let amount: String

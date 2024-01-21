@@ -1,0 +1,5 @@
+strings:
+  inputs: Localizable.strings
+  outputs:
+    - templateName: structured-swift5
+      output: Strings.swift

@@ -19,43 +19,43 @@ extension AlertItem {
     //MARK: - Network Alerts
     
     static let invalidData = AlertItem(
-        title: Text("Server Error"),
-        message: Text("The data received from the server was invalid. Please contact support."),
-        dismissButton: .default(Text("OK"))
+        title: Text(L10n.Error.server),
+        message: Text(L10n.InvalidData.message),
+        dismissButton: .default(Text(L10n.ok))
     )
     static let invalidResponse = AlertItem(
-        title: Text("Server Error"),
-        message: Text("Invalid response from the server. Please try again later or contact support."),
-        dismissButton: .default(Text("OK"))
+        title: Text(L10n.Error.server),
+        message: Text(L10n.InvalidResponse.message),
+        dismissButton: .default(Text(L10n.ok))
     )
     static let invalidURL = AlertItem(
-        title: Text("Server Error"),
-        message: Text("There was an issue connecting to server. If this persists, please contact support."),
-        dismissButton: .default(Text("OK"))
+        title: Text(L10n.Error.server),
+        message: Text(L10n.InvalidURL.message),
+        dismissButton: .default(Text(L10n.ok))
     )
     static let unableToComplete = AlertItem(
-        title: Text("Server Error"),
-        message: Text("Unable to complete your request at this time. Please check your internet connection."),
-        dismissButton: .default(Text("OK"))
+        title: Text(L10n.Error.server),
+        message: Text(L10n.UnableToComplete.message),
+        dismissButton: .default(Text(L10n.ok))
     )
     
     static let smthGoesWrong = AlertItem(
-        title: Text("Server Error"),
-        message: Text("Something goes wrong."),
-        dismissButton: .default(Text("OK"))
+        title: Text(L10n.Error.server),
+        message: Text(L10n.SmthGoesWrong.message),
+        dismissButton: .default(Text(L10n.ok))
     )
     
     //MARK: - DataSource Alerts
     
     static let invalidDataSaving = AlertItem(
-        title: Text("DataSource Error"),
-        message: Text("Unable to save data."),
-        dismissButton: .default(Text("OK"))
+        title: Text(L10n.Error.dataSource),
+        message: Text(L10n.InvalidDataSaving.message),
+        dismissButton: .default(Text(L10n.ok))
     )
     
     static let invalidDataLoading = AlertItem(
-        title: Text("DataSource Error"),
-        message: Text("Unable to load data."),
-        dismissButton: .default(Text("OK"))
+        title: Text(L10n.Error.dataSource),
+        message: Text(L10n.InvalidDataLoading.message),
+        dismissButton: .default(Text(L10n.ok))
     )
 }

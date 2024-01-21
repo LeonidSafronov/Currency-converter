@@ -12,7 +12,7 @@ struct ConvertedView: View {
     
     var body: some View {
         VStack {
-            Text("Result")
+            Text(L10n.View.result)
                 .font(.title)
                 .fontWeight(.semibold)
             

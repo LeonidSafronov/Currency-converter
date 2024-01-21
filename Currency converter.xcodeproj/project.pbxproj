@@ -23,6 +23,9 @@
 		B389065F2B5C4011000D5576 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B389065E2B5C4011000D5576 /* Task.swift */; };
 		B38906612B5C4BA8000D5576 /* ConvertedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38906602B5C4BA8000D5576 /* ConvertedView.swift */; };
 		B38906632B5C4BD0000D5576 /* PickerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38906622B5C4BD0000D5576 /* PickerSectionView.swift */; };
+		B3BCAC3F2B5DC9E90014C15B /* Swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = B3BCAC3E2B5DC9E90014C15B /* Swiftgen.yml */; };
+		B3BCAC412B5DCB580014C15B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3BCAC402B5DCB580014C15B /* Localizable.strings */; };
+		B3BCAC432B5DCDC80014C15B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BCAC422B5DCDC80014C15B /* Strings.swift */; };
 		B3D3D9CC2B5D569700C66C95 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3D9CB2B5D569700C66C95 /* Alert.swift */; };
 		B3D3D9CE2B5D576000C66C95 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3D9CD2B5D576000C66C95 /* LoadingView.swift */; };
 		B3D3D9D12B5D8E2000C66C95 /* Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3D9D02B5D8E2000C66C95 /* Queries.swift */; };
@@ -69,6 +72,9 @@
 		B389065E2B5C4011000D5576 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		B38906602B5C4BA8000D5576 /* ConvertedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedView.swift; sourceTree = "<group>"; };
 		B38906622B5C4BD0000D5576 /* PickerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSectionView.swift; sourceTree = "<group>"; };
+		B3BCAC3E2B5DC9E90014C15B /* Swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = Swiftgen.yml; sourceTree = "<group>"; };
+		B3BCAC402B5DCB580014C15B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		B3BCAC422B5DCDC80014C15B /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		B3D3D9CB2B5D569700C66C95 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		B3D3D9CD2B5D576000C66C95 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		B3D3D9D02B5D8E2000C66C95 /* Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queries.swift; sourceTree = "<group>"; };
@@ -106,6 +112,9 @@
 		B388C33C2B5A8D1A00355614 = {
 			isa = PBXGroup;
 			children = (
+				B3BCAC3E2B5DC9E90014C15B /* Swiftgen.yml */,
+				B3BCAC422B5DCDC80014C15B /* Strings.swift */,
+				B3BCAC402B5DCB580014C15B /* Localizable.strings */,
 				B388C3472B5A8D1A00355614 /* Currency converter */,
 				B388C35A2B5A8D1F00355614 /* Currency converterTests */,
 				B388C3642B5A8D1F00355614 /* Currency converterUITests */,
@@ -241,6 +250,7 @@
 				B388C3412B5A8D1A00355614 /* Sources */,
 				B388C3422B5A8D1A00355614 /* Frameworks */,
 				B388C3432B5A8D1A00355614 /* Resources */,
+				B3D3D9DE2B5DBC9000C66C95 /* Run swiftgen */,
 			);
 			buildRules = (
 			);
@@ -336,6 +346,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B388C3522B5A8D1F00355614 /* Preview Assets.xcassets in Resources */,
+				B3BCAC412B5DCB580014C15B /* Localizable.strings in Resources */,
+				B3BCAC3F2B5DC9E90014C15B /* Swiftgen.yml in Resources */,
 				B388C34F2B5A8D1F00355614 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +368,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B3D3D9DE2B5DBC9000C66C95 /* Run swiftgen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run swiftgen";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftgen >/dev/null; then\n  swiftgen\nelse\n  echo \"warning: SwiftGen not installed, download it from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B388C3412B5A8D1A00355614 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -366,6 +399,7 @@
 				B3D3D9D82B5DA67A00C66C95 /* DataSource.swift in Sources */,
 				B38906632B5C4BD0000D5576 /* PickerSectionView.swift in Sources */,
 				B388C3832B5A96CC00355614 /* RatesResponse.swift in Sources */,
+				B3BCAC432B5DCDC80014C15B /* Strings.swift in Sources */,
 				B388C34B2B5A8D1A00355614 /* ContentView.swift in Sources */,
 				B388C34D2B5A8D1A00355614 /* CurrencyStorageModel.swift in Sources */,
 				B388C3792B5A956300355614 /* ConverterService.swift in Sources */,

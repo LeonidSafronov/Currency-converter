@@ -16,11 +16,11 @@ struct PickerSectionView: View {
     var body: some View {
         HStack(alignment: .center, spacing: 60) {
             VStack {
-                Text("Convert from")
+                Text(L10n.View.FirstPicker.title)
                     .font(.title2)
                     .fontWeight(.semibold)
                 
-                Picker("First Currency", selection: $firstCurrency) {
+                Picker(L10n.View.FirstPicker.name, selection: $firstCurrency) {
                     ForEach(firstPickerCurrencies) { currency in
                         Text(currency.rawValue.capitalized)
                     }
@@ -28,11 +28,11 @@ struct PickerSectionView: View {
             }
             
             VStack {
-                Text("Convert to")
+                Text(L10n.View.SecondPicker.title)
                     .font(.title2)
                     .fontWeight(.semibold)
                 
-                Picker("Second Currency", selection: $secondCurrency) {
+                Picker(L10n.View.SecondPicker.name, selection: $secondCurrency) {
                     ForEach(secondPickerCurrencies) { currency in
                         Text(currency.rawValue.capitalized)
                     }

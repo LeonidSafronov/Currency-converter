@@ -13,7 +13,7 @@ struct LoadingView: View {
             Color(.systemBackground)
                 .ignoresSafeArea()
             
-            ProgressView("Loading...")
+            ProgressView(L10n.ProgressView.title)
                 .progressViewStyle(CircularProgressViewStyle())
                 .tint(.gray)
                 .scaleEffect(2)

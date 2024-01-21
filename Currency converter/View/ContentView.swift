@@ -16,7 +16,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            Text("Currency converter")
+            Text(L10n.View.title)
                 .font(.largeTitle)
                 .fontWeight(.bold)
             
@@ -38,14 +38,13 @@ struct ContentView: View {
             )
             
             HStack {
-                TextField("Amount",text: $viewModel.inputAmount, prompt: Text("Enter currency amount"))
+                TextField(L10n.View.Textfield.name,text: $viewModel.inputAmount, prompt: Text(L10n.View.Textfield.placeholder))
                     .font(.title2)
                     .fontWeight(.semibold)
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.decimalPad)
                 
-                Button("Done") {
-                    // TODO: add flag for first use only
+                Button(L10n.View.Button.title) {
                     viewModel.appendItem()
                     Task {
                         await viewModel.getConvertedAmount(from: viewModel.firstCurrency, to: viewModel.secondCurrency, amount: Double(viewModel.inputAmount) ?? 0)
@@ -58,7 +57,7 @@ struct ContentView: View {
             ConvertedView(convertedAmount: $viewModel.convertedAmount)
             
             if viewModel.isErrorReceived {
-                Text("No internet. Result based on data from \(viewModel.date)")
+                Text(L10n.View.warning(viewModel.date))
                     .foregroundStyle(.red)
                     .font(.title)
                     .fontWeight(.semibold)

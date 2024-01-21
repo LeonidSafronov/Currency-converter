@@ -13,9 +13,7 @@ protocol ConverterService {
 }
 
 extension HTTPClientImp {
-    // TODO: get from config file
-    private static let baseURL = "http://api.exchangeratesapi.io/v1/"
-    static let converterServiceClient = HTTPClientImp(baseURL: baseURL)
+    static let converterServiceClient = HTTPClientImp(baseURL: API.baseURL)
 }
 
 final class ConverterServiceImp: ConverterService {
@@ -25,10 +23,8 @@ final class ConverterServiceImp: ConverterService {
         self.client = client
     }
     
-    private static let token = "c81ee97fae4797403c3aa645112942c6"
-    
     func getCurrencyConvertation(from: Currency, to: Currency, amount: Double) async throws -> Double {
-        let query = AmountQuery(accessKey: Self.token, from: from.rawValue, to: to.rawValue, amount: String(amount))
+        let query = AmountQuery(accessKey: API.apiKey, from: from.rawValue, to: to.rawValue, amount: String(amount))
         return try await client.request(endpoint: L10n.Endpoint.convert, query: query)
     }
     
@@ -37,7 +33,7 @@ final class ConverterServiceImp: ConverterService {
         var result: [Currency : Double] = [:]
         for currency in currencies {
             let symbols = currencies.filter { $0 != currency }.map { $0.rawValue }.joined(separator: ",")
-            let query = RatesQuery(accessKey: Self.token, base: currency.rawValue, symbols: symbols)
+            let query = RatesQuery(accessKey: API.apiKey, base: currency.rawValue, symbols: symbols)
             try await result.merge(client.request(endpoint: L10n.Endpoint.latest, query: query)) { current, _ in
                 current
             }

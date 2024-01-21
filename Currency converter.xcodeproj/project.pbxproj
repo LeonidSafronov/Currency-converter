@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3047E812B5DDC120072E80C /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3047E802B5DDC120072E80C /* Configuration.swift */; };
 		B388C3492B5A8D1A00355614 /* CurrencyConverterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B388C3482B5A8D1A00355614 /* CurrencyConverterApp.swift */; };
 		B388C34B2B5A8D1A00355614 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B388C34A2B5A8D1A00355614 /* ContentView.swift */; };
 		B388C34D2B5A8D1A00355614 /* CurrencyStorageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B388C34C2B5A8D1A00355614 /* CurrencyStorageModel.swift */; };
@@ -53,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B3047E7E2B5DD9FD0072E80C /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		B3047E7F2B5DDB580072E80C /* Currency-converter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Currency-converter-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B3047E802B5DDC120072E80C /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		B388C3452B5A8D1A00355614 /* Currency converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Currency converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B388C3482B5A8D1A00355614 /* CurrencyConverterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterApp.swift; sourceTree = "<group>"; };
 		B388C34A2B5A8D1A00355614 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 		B388C33C2B5A8D1A00355614 = {
 			isa = PBXGroup;
 			children = (
+				B3047E802B5DDC120072E80C /* Configuration.swift */,
+				B3047E7E2B5DD9FD0072E80C /* Config.xcconfig */,
 				B3BCAC3E2B5DC9E90014C15B /* Swiftgen.yml */,
 				B3BCAC422B5DCDC80014C15B /* Strings.swift */,
 				B3BCAC402B5DCB580014C15B /* Localizable.strings */,
@@ -135,6 +141,7 @@
 		B388C3472B5A8D1A00355614 /* Currency converter */ = {
 			isa = PBXGroup;
 			children = (
+				B3047E7F2B5DDB580072E80C /* Currency-converter-Info.plist */,
 				B38906662B5C4D07000D5576 /* Services */,
 				B38906652B5C4CE4000D5576 /* ViewModel */,
 				B38906642B5C4CB1000D5576 /* View */,
@@ -251,6 +258,7 @@
 				B388C3422B5A8D1A00355614 /* Frameworks */,
 				B388C3432B5A8D1A00355614 /* Resources */,
 				B3D3D9DE2B5DBC9000C66C95 /* Run swiftgen */,
+				B3047E7D2B5DD8140072E80C /* Swift formatter */,
 			);
 			buildRules = (
 			);
@@ -369,6 +377,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		B3047E7D2B5DD8140072E80C /* Swift formatter */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift formatter";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swift-format >/dev/null; then\n    swift-format -m format -i -r ${PROJECT_DIR}\nelse\n    echo \"warning: swift-format not installed\"\nfi\n";
+		};
 		B3D3D9DE2B5DBC9000C66C95 /* Run swiftgen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -400,6 +426,7 @@
 				B38906632B5C4BD0000D5576 /* PickerSectionView.swift in Sources */,
 				B388C3832B5A96CC00355614 /* RatesResponse.swift in Sources */,
 				B3BCAC432B5DCDC80014C15B /* Strings.swift in Sources */,
+				B3047E812B5DDC120072E80C /* Configuration.swift in Sources */,
 				B388C34B2B5A8D1A00355614 /* ContentView.swift in Sources */,
 				B388C34D2B5A8D1A00355614 /* CurrencyStorageModel.swift in Sources */,
 				B388C3792B5A956300355614 /* ConverterService.swift in Sources */,
@@ -451,6 +478,7 @@
 /* Begin XCBuildConfiguration section */
 		B388C3692B5A8D1F00355614 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3047E7E2B5DD9FD0072E80C /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -579,6 +607,8 @@
 				DEVELOPMENT_TEAM = C2NP986THG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Currency-converter-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -608,6 +638,8 @@
 				DEVELOPMENT_TEAM = C2NP986THG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Currency-converter-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
